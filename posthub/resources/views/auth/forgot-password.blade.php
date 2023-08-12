@@ -1,9 +1,9 @@
 <x-layout>
    <x-slot:title>
-      PostHub: Register
+      PostHub: Forgot Password
    </x-slot>
-
+   
    <div class="d-flex justify-content-center align-items-center">
-      <livewire:auth.register-user />
+      <livewire:auth.forgot-password />
    </div>
 </x-layout>

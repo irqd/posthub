@@ -1,9 +1,9 @@
 <x-layout>
    <x-slot:title>
-      Login
+      PostHub: Login
    </x-slot>
    
-   <div class="d-flex justify-content-center align-items-center h-100">
+   <div class="d-flex justify-content-center align-items-center">
       <livewire:auth.login-user />
    </div>
 </x-layout>

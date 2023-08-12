@@ -9,6 +9,8 @@
         {{ $title }}
     </title>
     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     @vite(['resources/js/app.js'])
 
     @livewireStyles
@@ -16,12 +18,18 @@
 <body>
     <x-navbar/>
     
-    <div class="vh-100 container">
-        {{ $slot }}
-    </div>
-
-    <x-footer/>
-
+    <main>
+        <div class="vh-100 d-flex flex-column align-items-between">
+            <div class="container">
+                {{ $slot }}
+            </div>
+    
+            <div class="mt-5">
+                <x-footer/>
+            </div>
+        </div>
+    </main>
+    
     @livewireScripts
 </body>
 </html>

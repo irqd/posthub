@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-lg bg-primary px-lg-3 sticky-top" data-bs-theme="dark">
-    <div class="container-fluid d-flex justify-content-between">
+<nav class="navbar navbar-expand-lg bg-body-tertiary px-lg-3 sticky-top" data-bs-theme="dark">
+    <div class="container d-flex justify-content-between">
         <div class="d-flex">
-            <a class="navbar-brand text-body" href=""><span class="text-success">Post</span>Hub</a>
+            <a class="navbar-brand text-body" href="/"><span class="text-primary">Post</span>Hub</a>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                   <a class="nav-link" href="#">Home</a>
@@ -31,8 +31,8 @@
             </div>
         @else
             <div class="d-flex">
-                <a href="{{ route('auth.login') }}" class="btn btn-sm btn-outline-secondary me-2" wire:navigate>Login</a>
-                <a href="{{ route('auth.register') }}" class="btn btn-sm btn-secondary" wire:navigate>Register</a>
+                <a href="{{ route('auth.login') }}" class="btn btn-sm btn-outline-primary me-2" wire:navigate>Login</a>
+                <a href="{{ route('auth.register') }}" class="btn btn-sm btn-primary" wire:navigate>Register</a>
             </div>
         @endif
     </div>

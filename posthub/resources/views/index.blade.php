@@ -1,3 +1,5 @@
 <x-layout>
-    Hellow
+    <div class="vh-100">
+        Hello World
+    </div>
 </x-layout>
