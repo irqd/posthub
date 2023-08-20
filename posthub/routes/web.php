@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 // Landing page
 Route::get('/', function () {
     return view('index');
-});
+})->name('index');
 
 // Authentication
 Route::prefix('auth')->middleware(['guest'])->group(function () {

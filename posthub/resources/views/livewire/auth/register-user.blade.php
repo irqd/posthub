@@ -22,8 +22,8 @@
                                     type="text" 
                                     id="username" 
                                     placeholder="Enter a unique username"
-                                    name="username" 
-                                    wire:model="username"
+                                    name="form.username" 
+                                    wire:model.blur="form.username"
                                 />
                             </div>
             
@@ -38,8 +38,8 @@
                                     type="email" 
                                     id="email" 
                                     placeholder="Enter a valid email address"
-                                    name="email" 
-                                    wire:model="email"
+                                    name="form.email" 
+                                    wire:model.blur="form.email"
                                 />
                             </div>
             
@@ -75,35 +75,35 @@
                                     type="password" 
                                     id="password" 
                                     placeholder="Enter a strong password"
-                                    name="password" 
-                                    wire:model="password"
+                                    name="form.password" 
+                                    wire:model="form.password"
                                 />
                             </div>
             
-                            <!-- Password input -->
+                            <!-- Confirm Password input -->
                             <div class="mb-3">
                                 <x-form-label 
-                                for="confirm_password" 
+                                for="password_confirmation" 
                                 label="Confirm Password" 
                                 required="true"
                                 />
 
                                 <x-form-input 
-                                    type="confirm_password" 
-                                    id="confirm_password" 
+                                    type="password" 
+                                    id="password_confirmation" 
                                     placeholder="Confirm your password"
-                                    name="confirm_password" 
-                                    wire:model="confirm_password"
+                                    name="form.password_confirmation" 
+                                    wire:model="form.password_confirmation"
                                 />
                             </div>
             
                             <div class="d-flex justify-content-between text-center text-lg-start mt-4 pt-2 gap-2">
                                 <x-button type="submit" class="btn-lg d-flex justify-content-between align-items-center" style="padding-left: 2.5rem; padding-right: 2.5rem;">
-                                    <div wire:loading>
+                                    <div wire:loading wire:target="register">
                                         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                     </div>
-                                    <div wire:loading.remove>
-                                        Resgister
+                                    <div wire:loading.remove wire:target="register">
+                                        Register
                                     </div>
                                 </x-button>
                                 <p class="small fw-bold mt-2 pt-1 mb-0 text-center">
