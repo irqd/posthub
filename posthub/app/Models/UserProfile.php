@@ -15,6 +15,7 @@ class UserProfile extends Model
         'first_name',
         'last_name',
         'birthday',
+        'age',
         'phone_number',
         'address_1',
         'address_2',

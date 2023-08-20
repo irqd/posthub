@@ -41,7 +41,7 @@
                                         <div class="d-flex flex-column justify-content-between">
                                             <x-form-label class="mb-0 pb-0" for="password" label="Password" required="true" />
 
-                                            <small class="p-0 m-0 text-info" style="font-size: .60rem;">
+                                            <small class="p-0 m-0 mb-2 text-info" style="font-size: .60rem;">
                                                 min. of 8 characters, with 1 uppercase, number, and special character
                                             </small>
                                         </div>
@@ -78,8 +78,8 @@
                                                 type="text" 
                                                 id="first_name"
                                                 placeholder="Enter first name"
-                                                name="profileForm.firstName" 
-                                                wire:model.blur="profileForm.firstName" />
+                                                name="profileForm.first_name" 
+                                                wire:model.blur="profileForm.first_name" />
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
@@ -89,8 +89,8 @@
                                                 type="text" 
                                                 id="last_name"
                                                 placeholder="Enter last name"
-                                                name="profileForm.lastName" 
-                                                wire:model.blur="profileForm.lastName" />
+                                                name="profileForm.last_name" 
+                                                wire:model.blur="profileForm.last_name" />
                                             </div>
                                         </div>
                                     </div>

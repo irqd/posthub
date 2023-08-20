@@ -8,10 +8,10 @@ use Livewire\Form;
 class UserProfileForm extends Form
 {
     #[Rule('required|string|max:255', as: 'first name')]
-    public $firstName = '';
+    public $first_name = '';
 
     #[Rule('required|string|max:255', as: 'last name')]
-    public $lastName = '';
+    public $last_name = '';
 
     #[Rule('required|integer|min:18', as: 'age')]
     public $age = '';

@@ -2,9 +2,13 @@
 
 namespace App\Livewire\Auth;
 
+use Exception;
+use App\Models\User;
 use Livewire\Component;
 use App\Models\UserProfile;
+use Illuminate\Support\Facades\DB;
 use App\Livewire\Forms\RegisterForm;
+use Illuminate\Auth\Events\Registered;
 use App\Livewire\Forms\UserProfileForm;
 
 class RegisterUser extends Component
@@ -13,6 +17,7 @@ class RegisterUser extends Component
     public UserProfileForm $profileForm;
 
     public bool $isNext = false;
+    public $user = null;
 
     public function next()
     {   
@@ -25,9 +30,27 @@ class RegisterUser extends Component
         $this->userForm->validate();
         $this->profileForm->validate();
 
-        //dd($this->userForm, $this->profileForm);
+        try {
+            DB::transaction(function () {
+                // Create new user
+                $this->user = User::create(
+                    $this->userForm->all()
+                );
 
-        return redirect()->route('index');
+                // Create new user profile
+                $this->user->profile()->create(
+                    $this->profileForm->all()
+                );
+            });
+        } catch (Exception $e) {
+            session()->flash('error', 'Something went wrong creating your account. Please try again.');
+            return;
+        }
+
+        // authenticate user
+        auth()->login($this->user);
+
+        return $this->redirect(event(new Registered($this->user)));
     }
 
     public function render()

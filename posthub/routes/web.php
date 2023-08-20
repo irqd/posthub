@@ -1,9 +1,12 @@
 <?php
 
-use App\Http\Controllers\Auth\ForgotPasswordController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\LogoutController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +30,23 @@ Route::prefix('auth')->middleware(['guest'])->group(function () {
     Route::get('/register', [RegisterController::class, 'index'])->name('auth.register');
     Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])->name('auth.forgot-password');
 });
+
+// Authentication: Logout
+Route::prefix('auth')->middleware(['auth'])->group(function () {
+    Route::post('/logout', [LogoutController::class, 'logout'])->name('auth.logout');
+});
+
+// Email verification
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    return redirect()->route('index');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+ 
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');

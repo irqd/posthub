@@ -8,11 +8,11 @@ use Livewire\Form;
 class RegisterForm extends Form
 {   
     // ['required','string', 'min:6', 'max:255','unique:users,username']
-    #[Rule('required|string|min:6|max:255,unique:users,username', as: 'username')]
+    #[Rule('required|string|min:6|max:255|unique:users,username', as: 'username')]
     public $username = '';
 
     // ['required','string','email','max:255','unique:users,email']
-    #[Rule('required|string|email|max:255|unique:users,email', as: 'email')]
+    #[Rule('required|email|max:255|unique:users,email', as: 'email')]
     public $email = '';
 
     // ['required','string','min:8','regex:/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/']
