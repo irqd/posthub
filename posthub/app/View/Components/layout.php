@@ -11,7 +11,7 @@ class Layout extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(public string $title = 'PostHub')
+    public function __construct(public string $scripts = '', public string $title = 'PostHub')
     {
         
     }
