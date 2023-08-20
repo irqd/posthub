@@ -14,17 +14,18 @@ return new class extends Migration
         Schema::create('user_profiles', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); // Foreign key
-            $table->string('first_name')->nullable();
-            $table->string('last_name')->nullable();
-            $table->date('birthday'); // This will be a requirement for registration
-            $table->string('phone_number')->unique()->nullable();
-            $table->string('address_1')->comment('house or appartment number')->nullable();
-            $table->string('address_2')->comment('street name, subdivision, barangay, etc.')->nullable();
-            $table->string('city')->nullable();
-            $table->string('zip_code')->nullable();
-            $table->string('province')->nullable();
-            $table->string('country')->nullable();
-            $table->string('profile_picture')->nullable();
+            $table->string('first_name', 255);
+            $table->string('last_name', 255);
+            $table->date('birthday');
+            $table->integer('age');
+            $table->string('phone_number', 255)->unique()->nullable();
+            $table->string('address_1', 255)->comment('house or appartment number')->nullable();
+            $table->string('address_2', 255)->comment('street name, subdivision, barangay, etc.')->nullable();
+            $table->string('city', 255)->nullable();
+            $table->string('zip_code', 255)->nullable();
+            $table->string('province', 255)->nullable();
+            $table->string('country', 255)->nullable();
+            $table->string('profile_picture', 255)->nullable();
             $table->timestamps();
         });
     }
