@@ -14,18 +14,12 @@
 <body>
     <x-navbar/>
     
-    <main>
-        <div class="vh-100 d-flex flex-column justify-content-between">
-            <div class="container">
-                {{ $slot }}
-            </div>
-    
-            <div class="mt-5">
-                <x-footer/>
-            </div>
+    <main class="vh-100 d-flex flex-column justify-content-between">
+        <div class="container">
+            {{ $slot }}
         </div>
+
+        <x-footer/>
     </main>
-    
-    @livewireScripts
 </body>
 </html>

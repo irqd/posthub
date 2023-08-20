@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary px-lg-3 sticky-top" data-bs-theme="dark">
+<nav class="navbar navbar-expand-lg bg-body-tertiary px-lg-3 sticky-top">
     <div class="container d-flex justify-content-between">
         <div class="d-flex">
-            <a class="navbar-brand text-body" href="/"><span class="text-primary">Post</span>Hub</a>
+            <a class="navbar-brand text-body fw-bold" href="/"><span class="text-primary">Post</span>Hub</a>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link" href="#">Home</a>

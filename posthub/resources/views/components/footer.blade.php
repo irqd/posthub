@@ -1,7 +1,10 @@
-<footer class="bg-body-tertiary p-3" data-bs-theme="dark">
-   <div class="text-center fw-bold text-white">
-      <p class="mb-0">© 2023 PostHub</p>
-
-      <a href="https://storyset.com/user">User illustrations by Storyset</a>
+<footer class="bg-body-tertiary p-3 mt-5">
+   <div class="text-center fw-bold text-body">
+      <p class="mb-0">Made with ❤ by
+         <span>
+            <a href="https://github.com/irqd" class="text-primary" target="_blank">@irqd</a>
+         </span>  
+         © 2023 PostHub
+      </p>
    </div>
 </footer>
