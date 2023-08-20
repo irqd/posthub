@@ -22,7 +22,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 // Landing page
 Route::get('/', function () {
     return view('index');
-})->name('index');
+})->middleware(['guest'])->name('index');
 
 // Authentication
 Route::prefix('auth')->middleware(['guest'])->group(function () {
@@ -50,3 +50,18 @@ Route::post('/email/verification-notification', function (Request $request) {
     $request->user()->sendEmailVerificationNotification();
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+
+// Profile
+Route::prefix('profile')->middleware(['auth', 'verified'])->group(function () {
+    Route::get('/', function () {
+        return view('home.index');
+    })->name('home.index');
+});
+
+// Main
+Route::prefix('home')->middleware(['auth', 'verified'])->group(function () {
+    Route::get('/', function () {
+        return view('home.index');
+    })->name('home.index');
+});
