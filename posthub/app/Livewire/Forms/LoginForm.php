@@ -7,5 +7,9 @@ use Livewire\Form;
 
 class LoginForm extends Form
 {
-    //
+    #[Rule('required|string', as: 'username or email')]
+    public $usernameOrEmail = '';
+
+    #[Rule('required|string')]
+    public $password = '';
 }

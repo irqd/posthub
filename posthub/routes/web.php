@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Posts\PostController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
@@ -61,7 +62,5 @@ Route::prefix('profile')->middleware(['auth', 'verified'])->group(function () {
 
 // Main
 Route::prefix('home')->middleware(['auth', 'verified'])->group(function () {
-    Route::get('/', function () {
-        return view('home.index');
-    })->name('home.index');
+    Route::get('/', [PostController::class, 'index'])->name('posts.index');
 });

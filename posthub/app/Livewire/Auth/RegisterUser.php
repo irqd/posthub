@@ -43,7 +43,7 @@ class RegisterUser extends Component
                 );
             });
         } catch (Exception $e) {
-            session()->flash('error', 'Something went wrong creating your account. Please try again.');
+            session()->flash('danger', 'Something went wrong creating your account. Please try again.');
             return;
         }
 

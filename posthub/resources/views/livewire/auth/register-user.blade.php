@@ -10,6 +10,7 @@
                         <div>
                             <h3 class="fw-bold text-center">Register</h3>
                             <hr class="text-primary">
+                            <x-alerts type="danger"></x-alerts>
                             <form wire:submit="register">
                                 @csrf
 

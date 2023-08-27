@@ -4,7 +4,7 @@
             <a class="navbar-brand text-body fw-bold" href="/" wire:navigate><span class="text-primary">Post</span>Hub</a>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="{{ route('posts.index') }}" wire:navigate>Home</a>
                 </li>
             </ul>
         </div>
@@ -19,7 +19,7 @@
                     <img src="{{ asset('images/default.svg') }}" class="img-thumbnail rounded-circle" alt="user-thumbnail" width="40">
                 </button>
                 <div class="dropdown-menu dropdown-menu-end mt-2" data-bs-theme="light">
-                    <a class="dropdown-item" href="">Profile</a>
+                    <a class="dropdown-item" href="#">Settings</a>
                     <hr class="dropdown-divider">
                     <div class="dropdown-item">
                         <form action="{{ route('auth.logout') }}" method="POST">

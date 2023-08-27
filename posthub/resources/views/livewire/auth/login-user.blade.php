@@ -10,19 +10,22 @@
                     <div>
                         <h3 class="fw-bold text-center">Login</h3>
                         <hr class="text-primary">
+
+                        <x-alerts type="danger"></x-alerts>
+                        
                         <form wire:submit="login">
                             <div class="mb-3">
                                 <x-form-label 
-                                    for="email" 
-                                    label="Email" 
+                                    for="usernameOrEmail" 
+                                    label="Username or Email" 
                                     required="true"
                                 />
                                 <x-form-input 
-                                    type="email" 
-                                    id="email" 
-                                    placeholder="Enter a valid email address" 
-                                    name="email" 
-                                    wire:model="email"
+                                    type="text" 
+                                    id="usernameOrEmail" 
+                                    placeholder="Enter registered username or email" 
+                                    name="form.usernameOrEmail" 
+                                    wire:model="form.usernameOrEmail"
                                 />
                             </div>         
                             <div class="mb-3">
@@ -35,14 +38,14 @@
                                     type="password" 
                                     id="password" 
                                     placeholder="Enter a valid password" 
-                                    name="password" 
-                                    wire:model="password"
+                                    name="form.password" 
+                                    wire:model="form.password"
                                 />
                             </div>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="form-check mb-0">
-                                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
-                                    <label class="form-check-label" for="form2Example3">
+                                    <input class="form-check-input me-2" type="checkbox" id="remember" wire:model="remember"/>
+                                    <label class="form-check-label" for="remember">
                                         Remember me
                                     </label>
                                 </div>
