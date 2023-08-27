@@ -3,10 +3,11 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Auth\ForgotPasswordController;
-use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Posts\PostController;
+use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Settings\SettingsController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
@@ -30,6 +31,9 @@ Route::prefix('auth')->middleware(['guest'])->group(function () {
     Route::get('/login', [LoginController::class, 'index'])->name('auth.login');
     Route::get('/register', [RegisterController::class, 'index'])->name('auth.register');
     Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])->name('auth.forgot-password');
+    Route::get('/reset-password/{token}', function (string $token) {
+        return view('auth.reset-password', ['token' => $token]);
+    })->name('password.reset');
 });
 
 // Authentication: Logout
@@ -54,10 +58,9 @@ Route::post('/email/verification-notification', function (Request $request) {
 
 
 // Profile
-Route::prefix('profile')->middleware(['auth', 'verified'])->group(function () {
-    Route::get('/', function () {
-        return view('home.index');
-    })->name('home.index');
+Route::prefix('settings')->middleware(['auth', 'verified'])->group(function () {
+    Route::get('/profile', [SettingsController::class, 'profile'])->name('settings.profile');
+    Route::get('/account', [SettingsController::class, 'account'])->name('settings.account');
 });
 
 // Main

@@ -19,7 +19,7 @@
                     <img src="{{ asset('images/default.svg') }}" class="img-thumbnail rounded-circle" alt="user-thumbnail" width="40">
                 </button>
                 <div class="dropdown-menu dropdown-menu-end mt-2" data-bs-theme="light">
-                    <a class="dropdown-item" href="#">Settings</a>
+                    <a class="dropdown-item" href="{{ route('settings.profile') }}" wire:navigate>Settings</a>
                     <hr class="dropdown-divider">
                     <div class="dropdown-item">
                         <form action="{{ route('auth.logout') }}" method="POST">

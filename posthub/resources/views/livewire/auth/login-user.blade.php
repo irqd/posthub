@@ -12,8 +12,10 @@
                         <hr class="text-primary">
 
                         <x-alerts type="danger"></x-alerts>
+                        <x-alerts type="success"></x-alerts>
                         
                         <form wire:submit="login">
+                            @csrf
                             <div class="mb-3">
                                 <x-form-label 
                                     for="usernameOrEmail" 

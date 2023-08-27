@@ -9,16 +9,23 @@
                     <div class="d-flex flex-column w-100 h-100 justify-content-center align-items-center">
                         <div>
                             <h3 class="fw-bold text-center">Forgot Password</h3>
-                            <hr>
+                            <hr class="text-primary">
+
+                            <x-alerts type="danger"></x-alerts>
+                            <x-alerts type="success"></x-alerts>
+                            
                             <form wire:submit="send">
+                                @csrf
                                 <!-- Email input -->
-                                <div class="form-outline mb-3">
-                                    <label class="form-label fw-bold" for="form3Example3">
-                                        Registered email address<span class="text-danger">*</span>
-                                    </label>
-                                    <input type="email" id="form3Example3" class="form-control"
-                                        placeholder="Enter your registered email address" />
-                                    <small class="form-text">
+                                <div class="mb-3">
+                                    <x-form-label for="email" label="Registered email" required="true" />
+                                    <x-form-input 
+                                    type="email" 
+                                    id="email"
+                                    placeholder="Enter your registered email"
+                                    name="email" 
+                                    wire:model="email" />
+                                    <small class="text-muted">
                                         We will send you a password reset link. It will expire in 24 hours.
                                     </small>
                                 </div>
