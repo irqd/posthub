@@ -19,12 +19,9 @@ return new class extends Migration
             $table->date('birthday');
             $table->integer('age');
             $table->string('phone_number', 255)->unique()->nullable();
+            $table->string('bio', 255)->nullable();
             $table->string('address_1', 255)->comment('house or appartment number')->nullable();
             $table->string('address_2', 255)->comment('street name, subdivision, barangay, etc.')->nullable();
-            $table->string('city', 255)->nullable();
-            $table->string('zip_code', 255)->nullable();
-            $table->string('province', 255)->nullable();
-            $table->string('country', 255)->nullable();
             $table->string('profile_picture', 255)->nullable();
             $table->timestamps();
         });

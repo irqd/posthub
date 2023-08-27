@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary px-lg-3 sticky-top">
+<nav class="navbar navbar-expand-lg bg-body-tertiary px-lg-3 sticky-top shadow-sm">
     <div class="container d-flex justify-content-between">
         <div class="d-flex">
-            <a class="navbar-brand text-body fw-bold" href="/" wire:navigate><span class="text-primary">Post</span>Hub</a>
+            <a class="navbar-brand text-body fw-bold" href="{{ route('index') }}" wire:navigate><span class="text-primary">Post</span>Hub</a>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('posts.index') }}" wire:navigate>Home</a>
@@ -19,12 +19,20 @@
                     <img src="{{ asset('images/default.svg') }}" class="img-thumbnail rounded-circle" alt="user-thumbnail" width="40">
                 </button>
                 <div class="dropdown-menu dropdown-menu-end mt-2" data-bs-theme="light">
-                    <a class="dropdown-item" href="{{ route('settings.profile') }}" wire:navigate>Settings</a>
+                    <a class="dropdown-item text-primary fw-bold" href="#" wire:navigate>
+                        <i class="fa-solid fa-user"></i> Profile
+                    </a>
+                    <a class="dropdown-item text-primary fw-bold" href="{{ route('settings.profile') }}" wire:navigate>
+                        <i class="fa-solid fa-gear"></i> Settings
+                    </a>
                     <hr class="dropdown-divider">
                     <div class="dropdown-item">
                         <form action="{{ route('auth.logout') }}" method="POST">
                             @csrf
-                            <input type="submit" class="nav-link text-danger" value="Logout">
+                            <div class="d-flex gap-2 fw-bold">
+                                <i class="fa-solid fa-right-from-bracket mt-1 text-danger"></i>
+                                <input type="submit" class="nav-link text-danger" value="Logout">
+                            </div>
                         </form>
                     </div>
                 </div>
