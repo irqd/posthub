@@ -112,50 +112,60 @@
                 wire:model="form.bio"></textarea>
             </div>
         </div>
-        <h6 class="fw-bold">Social Links</h6>
-        <div class="row g-3 mb-3">
+        <h6 class="fw-bold mb-0">Social Links</h6>
+        <small class="fw-bold text-info">
+            always include https://
+        </small>
+        <div class="row g-3">
             <div class="col-md-9">
                 @foreach($social_links as $index => $social_link)
-                    <div class="d-flex mb-1">
-                        <div class="d-flex gap-1">
-                            <x-form-input 
-                            class="form-control-sm"
-                            type="text" 
-                            id="first_name"
-                            placeholder="Enter your first name"
-                            name="first_name" 
-                            wire:model="first_name" />
-
-                            <x-form-input 
-                            class="form-control-sm"
-                            type="text" 
-                            id="first_name"
-                            placeholder="Enter your first name"
-                            name="first_name" 
-                            wire:model="first_name" />
+                    <div class="d-flex mb-1" wire:key="{{ $index }}">
+                        <div class="row gx-1">
+                            <div class="col">
+                                <x-form-input 
+                                class="form-control-sm"
+                                type="text" 
+                                id="social_links.{{ $index }}.name"
+                                placeholder="Enter social link name"
+                                name="social_links.{{ $index }}.name" 
+                                wire:model="social_links.{{ $index }}.name" />
+                            </div>
+                            
+                            <div class="col">
+                                <x-form-input 
+                                class="form-control-sm"
+                                type="text" 
+                                id="social_links.{{ $index }}.link"
+                                placeholder="Enter social link url"
+                                name="social_links.{{ $index }}.link" 
+                                wire:model="social_links.{{ $index }}.link" />
+                                
+                            </div>
                         </div>
                         
+                        <div>
+                            @if($loop->last)
+                                <button 
+                                type="button" 
+                                class="btn btn-sm btn-outline-primary ms-1"
+                                wire:click="addSocialLink">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            @else
+                                <button 
+                                type="button" 
+                                class="btn btn-sm btn-outline-danger ms-1"
+                                wire:click="removeSocialLink({{ $index }})">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            @endif
+                        </div>
                         {{-- check if item is last index --}}
-                        @if($loop->last)
-                            <button 
-                            type="button" 
-                            class="btn btn-sm btn-outline-primary ms-1"
-                            wire:click="addSocialLink">
-                                <i class="fas fa-plus"></i>
-                            </button>
-                        @else
-                            <button 
-                            type="button" 
-                            class="btn btn-sm btn-outline-danger ms-1"
-                            wire:click="removeSocialLink({{ $index }})">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                        @endif
                     </div>
                 @endforeach
             </div>
         </div>
-        <div class="d-flex justify-content-start mt-5">
+        <div class="d-flex justify-content-start mt-3">
             <x-button type="submit">
                 Update
             </x-button>

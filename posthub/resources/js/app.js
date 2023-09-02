@@ -5,31 +5,36 @@ import * as bootstrap from 'bootstrap'; // from node_modules/bootstrap
 const toastElList = document.querySelectorAll('.toast');
 const toastList = [...toastElList].map(toastEl => new bootstrap.Toast(toastEl));
 
-Livewire.on('dispatch-toast', function(event) {
-   const toastID = document.getElementById('toast');
-   const toast = bootstrap.Toast.getOrCreateInstance(toastID);
+document.addEventListener('dispatch-toast', function(event) {
+   const { detail } = event['detail'];
+
+   const toast = document.getElementById('toast');
    const toastIcon = document.getElementById('toast-icon');
+   const toastTitle = document.getElementById('toast-title');
    const toastMessage = document.getElementById('toast-message');
-   const { detail } = event;
+   const toastInstance = new bootstrap.Toast(toast);
+   let iconName = '';
 
-   //remove all classes
-   toastElList[0].classList.remove('text-bg-success', 'text-bg-danger', 'text-bg-warning', 'text-bg-info');
-
-   if(detail.type === 'success') {
-      toastElList[0].classList.add('text-bg-success');
-      toastIcon.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
-   } else if(detail.type === 'danger') {
-      toastElList[0].classList.add('text-bg-danger');
-      toastIcon.innerHTML = '<i class="fa-solid fa-circle-xmark"></i>';
-   } else if(detail.type === 'warning') {
-      toastElList[0].classList.add('text-bg-warning');
-      toastIcon.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i>';
-   } else if(detail.type === 'info') {
-      toastElList[0].classList.add('text-bg-info');
-      toastIcon.innerHTML = '<i class="fa-solid fa-circle-info"></i>';
+   if(detail.type == 'success') {
+      iconName = 'fa-circle-check';
+   } else if (detail.type == 'danger') {
+      iconName = 'fa-circle-xmark';
+   } else if (detail.type == 'warning') {
+      iconName = 'fa-circle-exclamation';
+   } else if (detail.type == 'info') {
+      iconName = 'fa-circle-info';
    }
 
+   toastIcon.classList.add(iconName);
+   toastTitle.innerHTML = detail.title;
    toastMessage.innerHTML = detail.message;
 
-   toast.show()
+   toast.classList.add('text-bg-' + detail.type);
+
+   toastInstance.show();
+
+   toast.addEventListener('hidden.bs.toast', function() {
+      toast.classList.remove('text-bg-' + detail.type);
+      toastIcon.classList.remove(iconName);
+   });
 });
