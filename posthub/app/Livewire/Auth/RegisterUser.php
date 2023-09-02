@@ -39,7 +39,12 @@ class RegisterUser extends Component
 
                 // Create new user profile
                 $this->user->profile()->create(
-                    $this->profileForm->all()
+                    $this->profileForm->only([
+                        'first_name',
+                        'last_name',
+                        'birthday',
+                        'age',
+                    ])
                 );
             });
         } catch (Exception $e) {
