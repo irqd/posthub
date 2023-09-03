@@ -25,6 +25,7 @@
                         @this.removeUpload('profilePicture', filename, load);
                     },
 
+                    // TODO: Implement this
                     load: (source, load, error, progress, abort, headers) => {
                         console.log(@this)
                     },
