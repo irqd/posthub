@@ -17,6 +17,12 @@
 
             FilePond.setOptions({
                 server: {
+                    // TODO: Implement this
+                    load: (source, load, error, progress, abort, headers) => {
+                        // Should call the load method when done and pass the file item
+                        // load is not getting called for some reason
+                    },
+
                     process: (fieldName, file, metadata, load, error, progress, abort, transfer, options) => {
                         @this.upload('profilePicture', file, load, error, progress);
                     },
@@ -24,12 +30,6 @@
                     revert: (filename, load) => {
                         @this.removeUpload('profilePicture', filename, load);
                     },
-
-                    // TODO: Implement this
-                    load: (source, load, error, progress, abort, headers) => {
-                        console.log(@this)
-                    },
-
                 },
             });
 

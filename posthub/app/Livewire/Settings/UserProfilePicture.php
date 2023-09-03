@@ -11,6 +11,11 @@ class UserProfilePicture extends Component
 
     public $profilePicture;
 
+    public function mount()
+    {
+        $this->profilePicture = auth()->user()->profile->profile_picture;
+    }
+
     public function updateProfilePicture()
     {
         $this->validate([
