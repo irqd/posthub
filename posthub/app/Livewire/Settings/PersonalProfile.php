@@ -4,7 +4,6 @@ namespace App\Livewire\Settings;
 
 use Livewire\Component;
 use App\Models\SocialLinks;
-use App\Models\UserProfile;
 use Livewire\Attributes\Rule;
 use Illuminate\Support\Facades\DB;
 use App\Livewire\Forms\UserProfileForm;
@@ -20,6 +19,39 @@ class PersonalProfile extends Component
 
     public UserProfileForm $form;
     public $userProfile;
+
+    private function updateSocialLinks(array $socialLinks)
+    {
+        foreach($socialLinks as $socialLInk) {
+            // if social link name and link is not empty
+            // update or create else do nothing.
+            if(!empty($socialLInk['name']) && !empty($socialLInk['link'])) {
+                SocialLinks::updateOrCreate(
+                    ['id' => $socialLInk['id']],
+                    [
+                        'user_id' => auth()->id(),
+                        'name' => $socialLInk['name'],
+                        'link' => $socialLInk['link'],
+                    ]
+                );
+            }
+        }
+    }
+
+    private function deleteSocialLinks(array $socialLinksCopy, array $socialLinks)
+    {   
+        // check for difference in social links and social links copy
+        // if there is a difference delete.
+        $diff = array_udiff($socialLinksCopy, $socialLinks, function ($a, $b) {
+            return $a['id'] - $b['id'];
+        });
+        
+        if(!empty($diff)) {
+            foreach($diff as $d) {
+                SocialLinks::find($d['id'])->delete();
+            }
+        }
+    }
 
     public function mount()
     {
@@ -75,39 +107,6 @@ class PersonalProfile extends Component
                 'message' => 'Your profile has been updated.',
             ]);
         });
-    }
-
-    public function updateSocialLinks(array $socialLinks)
-    {
-        foreach($socialLinks as $socialLInk) {
-            // if social link name and link is not empty
-            // update or create else do nothing.
-            if(!empty($socialLInk['name']) && !empty($socialLInk['link'])) {
-                SocialLinks::updateOrCreate(
-                    ['id' => $socialLInk['id']],
-                    [
-                        'user_id' => auth()->id(),
-                        'name' => $socialLInk['name'],
-                        'link' => $socialLInk['link'],
-                    ]
-                );
-            }
-        }
-    }
-
-    public function deleteSocialLinks(array $socialLinksCopy, array $socialLinks)
-    {   
-        // check for difference in social links and social links copy
-        // if there is a difference delete.
-        $diff = array_udiff($socialLinksCopy, $socialLinks, function ($a, $b) {
-            return $a['id'] - $b['id'];
-        });
-        
-        if(!empty($diff)) {
-            foreach($diff as $d) {
-                SocialLinks::find($d['id'])->delete();
-            }
-        }
     }
 
     public function validationAttributes()
