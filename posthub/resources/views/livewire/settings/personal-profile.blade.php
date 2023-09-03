@@ -118,27 +118,27 @@
         </small>
         <div class="row g-3">
             <div class="col-md-9">
-                @foreach($social_links as $index => $social_link)
+                @foreach($socialLinks as $index => $socialLink)
                     <div class="d-flex mb-1" wire:key="{{ $index }}">
                         <div class="row gx-1">
                             <div class="col">
                                 <x-form-input 
                                 class="form-control-sm"
                                 type="text" 
-                                id="social_links.{{ $index }}.name"
+                                id="socialLinks.{{ $index }}.name"
                                 placeholder="Enter social link name"
-                                name="social_links.{{ $index }}.name" 
-                                wire:model="social_links.{{ $index }}.name" />
+                                name="socialLinks.{{ $index }}.name" 
+                                wire:model="socialLinks.{{ $index }}.name" />
                             </div>
                             
                             <div class="col">
                                 <x-form-input 
                                 class="form-control-sm"
                                 type="text" 
-                                id="social_links.{{ $index }}.link"
+                                id="socialLinks.{{ $index }}.link"
                                 placeholder="Enter social link url"
-                                name="social_links.{{ $index }}.link" 
-                                wire:model="social_links.{{ $index }}.link" />
+                                name="socialLinks.{{ $index }}.link" 
+                                wire:model="socialLinks.{{ $index }}.link" />
                                 
                             </div>
                         </div>

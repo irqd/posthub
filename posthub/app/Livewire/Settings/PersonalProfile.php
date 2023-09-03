@@ -12,10 +12,11 @@ use App\Livewire\Forms\UserProfileForm;
 class PersonalProfile extends Component
 {      
     #[Rule([
-        'social_links.*.name' => 'nullable|string|max:255',
-        'social_links.*.link' => 'nullable|url|max:255',
+        'socialLinks.*.name' => 'nullable|string|max:255',
+        'socialLinks.*.link' => 'nullable|url|max:255',
     ])]
-    public array $social_links = [];
+    public array $socialLinks = [];
+    public array $socialLinksCopy = [];   
 
     public UserProfileForm $form;
     public $userProfile;
@@ -25,21 +26,23 @@ class PersonalProfile extends Component
         $this->userProfile = auth()->user()->profile;
         $this->form->setUserProfile($this->userProfile);
 
-        $this->social_links = auth()->user()->socialLinks->toArray();
+        $this->socialLinks = auth()->user()->socialLinks->toArray();
 
-        if(count($this->social_links) == 0) {
-            $this->social_links[] = [
+        if(count($this->socialLinks) == 0) {
+            $this->socialLinks[] = [
                 'id' => null,
                 'user_id' => null,
                 'name' => null,
                 'link' => 'https://',
             ];
         }
+
+        $this->socialLinksCopy = $this->socialLinks;
     }
 
     public function addSocialLink()
     {
-        $this->social_links[] = [
+        $this->socialLinks[] = [
             'id' => null,
             'user_id' => null,
             'name' => null,
@@ -49,7 +52,7 @@ class PersonalProfile extends Component
 
     public function removeSocialLink($index)
     {
-        unset($this->social_links[$index]);
+        unset($this->socialLinks[$index]);
     }
 
     public function update()
@@ -61,21 +64,13 @@ class PersonalProfile extends Component
             // Updates profile
             $this->userProfile->update($updatedForm);
 
-            // create/update social links
-            // temp solution, need to find a better way to do this
+            // Deletes social links
+            $this->deleteSocialLinks($this->socialLinksCopy, $this->socialLinks);
+            
+            // Updates social links
+            $this->updateSocialLinks($this->socialLinks);
 
-            TODO: // need to find a better way to do this
-            foreach($this->social_links as $social_link) {
-                SocialLinks::updateOrCreate(
-                    ['id' => $social_link['id']],
-                    [
-                        'user_id' => auth()->id(),
-                        'name' => $social_link['name'],
-                        'link' => $social_link['link'],
-                    ]
-                );
-            }
-
+            // Dispatches toast
             $this->dispatch('dispatch-toast', detail: [
                 'type' => 'success',
                 'title' => 'Success!',
@@ -84,11 +79,40 @@ class PersonalProfile extends Component
         });
     }
 
+    public function updateSocialLinks(array $socialLinks)
+    {
+        foreach($socialLinks as $socialLInk) {
+            SocialLinks::updateOrCreate(
+                ['id' => $socialLInk['id']],
+                [
+                    'user_id' => auth()->id(),
+                    'name' => $socialLInk['name'],
+                    'link' => $socialLInk['link'],
+                ]
+            );
+        }
+    }
+
+    public function deleteSocialLinks(array $socialLinks, array $socialLinksCopy)
+    {   
+        // check for difference in social links and social links copy
+        // if there is a difference delete.
+        $diff = array_udiff($socialLinksCopy, $socialLinks, function ($a, $b) {
+            return $a['id'] - $b['id'];
+        });
+        
+        if(count($diff) > 0) {
+            foreach($diff as $d) {
+                SocialLinks::find($d['id'])->delete();
+            }
+        }
+    }
+
     public function validationAttributes()
     {
         return [
-            'social_links.*.name' => 'social link name',
-            'social_links.*.link' => 'social link url',
+            'socialLinks.*.name' => 'social link name',
+            'socialLinks.*.link' => 'social link url',
         ];
     }
 
