@@ -3,6 +3,14 @@
       PostHub: Profile
    </x-slot>
    
+   <x-slot:styles>
+      <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
+      <link
+         href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+         rel="stylesheet"
+      />
+   </x-slot>
+
    <x-toast />
 
    <div class="d-flex flex-column justify-content-sm-start justify-content-center align-items-center h-100">
@@ -58,4 +66,9 @@
          </div>
       </div>
    </div>
+
+   <x-slot:scripts>
+      <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+      <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+   </x-slot>
 </x-layout>

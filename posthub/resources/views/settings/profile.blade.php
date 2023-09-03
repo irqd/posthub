@@ -12,7 +12,12 @@
          <livewire:settings.personal-profile />
       </div>
       <div class="col-md-4 order-sm-2 order-1">
-         Picture
+         <h6 class="fw-bold mb-0">Picture</h6>
+         <div class="row justify-content-center align-items-center px-3 pt-md-3">
+            <div class="col-8 col-md-12 col-lg-10">
+               <livewire:settings.user-profile-picture />
+            </div>
+         </div>
       </div>
    </div>
 @endsection
