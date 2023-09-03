@@ -27,15 +27,13 @@ class PersonalProfile extends Component
         $this->form->setUserProfile($this->userProfile);
 
         $this->socialLinks = auth()->user()->socialLinks->toArray();
-
-        if(count($this->socialLinks) == 0) {
-            $this->socialLinks[] = [
-                'id' => null,
-                'user_id' => null,
-                'name' => null,
-                'link' => 'https://',
-            ];
-        }
+        
+        $this->socialLinks[] = [
+            'id' => null,
+            'user_id' => null,
+            'name' => null,
+            'link' => null,
+        ];
 
         $this->socialLinksCopy = $this->socialLinks;
     }
@@ -46,7 +44,7 @@ class PersonalProfile extends Component
             'id' => null,
             'user_id' => null,
             'name' => null,
-            'link' => 'https://',
+            'link' => null,
         ];
     }
 
@@ -82,18 +80,22 @@ class PersonalProfile extends Component
     public function updateSocialLinks(array $socialLinks)
     {
         foreach($socialLinks as $socialLInk) {
-            SocialLinks::updateOrCreate(
-                ['id' => $socialLInk['id']],
-                [
-                    'user_id' => auth()->id(),
-                    'name' => $socialLInk['name'],
-                    'link' => $socialLInk['link'],
-                ]
-            );
+            // if social link name and link is not empty
+            // update or create else do nothing.
+            if(!empty($socialLInk['name']) && !empty($socialLInk['link'])) {
+                SocialLinks::updateOrCreate(
+                    ['id' => $socialLInk['id']],
+                    [
+                        'user_id' => auth()->id(),
+                        'name' => $socialLInk['name'],
+                        'link' => $socialLInk['link'],
+                    ]
+                );
+            }
         }
     }
 
-    public function deleteSocialLinks(array $socialLinks, array $socialLinksCopy)
+    public function deleteSocialLinks(array $socialLinksCopy, array $socialLinks)
     {   
         // check for difference in social links and social links copy
         // if there is a difference delete.
@@ -101,7 +103,7 @@ class PersonalProfile extends Component
             return $a['id'] - $b['id'];
         });
         
-        if(count($diff) > 0) {
+        if(!empty($diff)) {
             foreach($diff as $d) {
                 SocialLinks::find($d['id'])->delete();
             }
