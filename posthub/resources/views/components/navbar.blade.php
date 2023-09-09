@@ -16,11 +16,12 @@
                 </span> --}}
                 <button class="btn p-0 rounded-circle focus-ring" type="button" data-bs-toggle="dropdown"
                     aria-expanded="false">
-                    @if(Auth::user()->profile->profile_picture)
+                    <livewire:misc.nav-profile-picture />
+                    {{-- @if(Auth::user()->profile->profile_picture)
                     <img src="{{ asset('storage/'.Auth::user()->profile->profile_picture) }}" class="img-thumbnail rounded-circle" alt="user-thumbnail" width="40">
                     @else
                         <img src="{{ asset('images/default.svg') }}" class="img-thumbnail rounded-circle" alt="user-thumbnail" width="40">
-                    @endif
+                    @endif --}}
                 </button>
                 <div class="dropdown-menu dropdown-menu-end mt-2" data-bs-theme="light">
                     <a class="dropdown-item text-primary fw-bold" href="#" wire:navigate>
