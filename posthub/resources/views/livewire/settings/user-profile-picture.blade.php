@@ -12,7 +12,12 @@
     <div 
         wire:ignore
         x-data
+        x-on:create-filepond="console.log('test');"
         x-init="
+            document.addEventListener('livewire:initialized', () => {
+                
+            });  
+
             FilePond.registerPlugin(FilePondPluginImagePreview);
 
             FilePond.setOptions({

@@ -43,7 +43,7 @@ class LoginUser extends Component
 
         if (Auth::attempt($credentials, $this->remember)) {
             session()->regenerate();
-            return $this->redirect(route('posts.index'));
+            return $this->redirect(route('posts.index'), navigate: true);
         }
 
         RateLimiter::hit($throttleKey,$this->decaySeconds);

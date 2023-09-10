@@ -17,17 +17,13 @@
                 <button class="btn p-0 rounded-circle focus-ring" type="button" data-bs-toggle="dropdown"
                     aria-expanded="false">
                     <livewire:misc.nav-profile-picture />
-                    {{-- @if(Auth::user()->profile->profile_picture)
-                    <img src="{{ asset('storage/'.Auth::user()->profile->profile_picture) }}" class="img-thumbnail rounded-circle" alt="user-thumbnail" width="40">
-                    @else
-                        <img src="{{ asset('images/default.svg') }}" class="img-thumbnail rounded-circle" alt="user-thumbnail" width="40">
-                    @endif --}}
                 </button>
                 <div class="dropdown-menu dropdown-menu-end mt-2" data-bs-theme="light">
                     <a class="dropdown-item text-primary fw-bold" href="#" wire:navigate>
                         <i class="fa-solid fa-user"></i> Profile
                     </a>
-                    <a class="dropdown-item text-primary fw-bold" href="{{ route('settings.profile') }}" wire:navigate>
+                    {{-- TEMP FIX: removed wire:navigate --}}
+                    <a class="dropdown-item text-primary fw-bold" href="{{ route('settings.profile') }}">
                         <i class="fa-solid fa-gear"></i> Settings
                     </a>
                     <hr class="dropdown-divider">
