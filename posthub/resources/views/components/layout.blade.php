@@ -16,7 +16,7 @@
 <body>
     <x-navbar/>
     
-    <main class="vh-100 d-flex flex-column justify-content-between">
+    <main class="d-flex flex-column justify-content-between">
         <div class="container">
             {{ $slot }}
         </div>
