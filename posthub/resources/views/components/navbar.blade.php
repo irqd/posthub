@@ -8,8 +8,12 @@
                 </li>
             </ul>
         </div>
-        
-        <div class="d-none d-md-block w-50">
+
+        <div @class([
+                'd-none w-50',
+                'd-md-block' => request()->routeIs('posts.index')
+            ])
+        >
             <div class="input-group">
                 <input type="text" class="form-control" name="search" placeholder="Search posts...">
                 <button class="btn btn-outline-primary" type="submit">
@@ -59,7 +63,7 @@
                 </div>
             @endif
         </div>  
-
+        
         <div class="collapse w-100" id="search">
             <div class="input-group mt-2 w-100">
                 <input type="text" class="form-control" name="search" placeholder="Search posts...">
