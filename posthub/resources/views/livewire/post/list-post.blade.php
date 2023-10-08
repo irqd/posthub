@@ -1,6 +1,6 @@
 <div class="d-flex flex-column gap-3" 
     id="post_list" 
-    wire:poll
+    wire:poll="getPosts"
 >
     @foreach($posts as $index => $post)
         <div class="card" wire:key={{ $index }}>

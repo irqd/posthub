@@ -23,10 +23,17 @@
             <input 
                 type="text" 
                 class="form-control form-control-sm" 
+                list="topicList"
                 name="topic" 
                 wire:model="topic"
                 placeholder="Topic"
+                autocomplete="off"
             >
+            <datalist id="topicList">
+                @foreach($topicList as $topic)
+                    <option value="{{ $topic }}">
+                @endforeach
+            </datalist>
         </div>
         <div class="w-100 mb-2">
             <div class="form-floating">

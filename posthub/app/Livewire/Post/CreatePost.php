@@ -54,7 +54,9 @@ class CreatePost extends Component
     }
 
     public function render()
-    {
-        return view('livewire.post.create-post');
+    {   
+        $topicList = Post::select('topic')->distinct()->get()->pluck('topic');
+
+        return view('livewire.post.create-post', compact('topicList'));
     }
 }
