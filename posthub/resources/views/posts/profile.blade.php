@@ -1,6 +1,6 @@
 <x-layout>
    <x-slot:title>
-      PostHub: Home
+      PostHub: Profile
    </x-slot>
 
    <x-toast />
@@ -15,13 +15,19 @@
          </div>
       </div>
       <div class="col-md-6 p-3" style="max-height: 100%">
-         {{-- create post --}}
-         <h6 class="fw-bold">Create Post</h6>
-         <livewire:post.create-post />
+         
+         <h6 class="fw-bold">{{ $username }}'s Profile</h6>
+         
+         <x-user-hero :user-id="$user_id"/>
+
+         @if($user_id == auth()->user()->id)
+            <h6 class="fw-bold mt-3">Create Post</h6>
+            <livewire:post.create-post />
+         @endif
+
          <hr>
 
-         {{-- list all post --}}
-         <livewire:post.list-post />
+         <livewire:post.list-post-by-profile :user_id="$user_id"/>
       </div>
       <div class=" d-none d-md-block col-md-3 p-3">
          <div class="position-fixed">

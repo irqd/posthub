@@ -57,7 +57,7 @@ Route::post('/email/verification-notification', function (Request $request) {
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 
-// Profile
+// Settings
 Route::prefix('settings')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [SettingsController::class, 'profile'])->name('settings.profile');
     Route::get('/account', [SettingsController::class, 'account'])->name('settings.account');
@@ -67,3 +67,9 @@ Route::prefix('settings')->middleware(['auth', 'verified'])->group(function () {
 Route::prefix('home')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/', [PostController::class, 'index'])->name('posts.index');
 });
+
+Route::prefix('profile')->middleware(['auth', 'verified'])->group(function () {
+    Route::get('/{username}', [PostController::class, 'profile'])->name('posts.profile');
+});
+
+

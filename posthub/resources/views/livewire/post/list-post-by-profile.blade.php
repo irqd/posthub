@@ -14,8 +14,8 @@
                         @endif
                         <div class="d-flex flex-column gap-0">
                             <a  
-                                href="{{ route('posts.profile', ['username' => $post->user->username]) }}" class="fw-bold m-0 h-6 link-primary text-decoration-none" 
-                                wire:navigate
+                                href="#"
+                                class="fw-bold m-0 h-6 link-primary text-decoration-none" 
                             >
                                 {{ $post->user->username }}
                             </a>
@@ -90,3 +90,4 @@
     >    
     </div>
 </div>
+

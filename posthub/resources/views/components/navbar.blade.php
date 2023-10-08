@@ -11,7 +11,7 @@
 
         <div @class([
                 'd-none w-50',
-                'd-md-block' => request()->routeIs('posts.index')
+                'd-md-block' => request()->routeIs('posts.index') || request()->routeIs('posts.profile'),
             ])
         >
             <div class="input-group">
@@ -37,7 +37,7 @@
                         <livewire:misc.nav-profile-picture />
                     </button>
                     <div class="dropdown-menu dropdown-menu-end mt-2" data-bs-theme="light">
-                        <a class="dropdown-item text-primary fw-bold" href="#" wire:navigate>
+                        <a class="dropdown-item text-primary fw-bold" href="{{ route('posts.profile', ['username' => auth()->user()->username]) }}" wire:navigate>
                             <i class="fa-solid fa-user"></i> Profile
                         </a>
                         {{-- TEMP FIX: removed wire:navigate --}}
