@@ -1,4 +1,4 @@
-<footer class="bg-body-tertiary p-3 mt-5">
+<footer class="bg-body-tertiary p-3 mt-1">
    <div class="text-center fw-bold text-body">
       <p class="mb-0">Made with ❤ by
          <span>
