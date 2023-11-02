@@ -37,7 +37,7 @@ To set up the PostHub project, follow these steps:
 3. **Install Dependencies:** Install Dependencies:
 
    ```shell
-   Install Dependencies:
+   composer install
 
 4. **Copy the Environment File:** Make a copy of the example environment file and configure it with your database settings:
 
@@ -71,5 +71,5 @@ To set up the PostHub project, follow these steps:
 
 ## 4. Key Notes
 
-- The application core features are working as is, but there are still some features that need to be implemented.
+- The application core features are working as is, but there are still some features that need to be implemented. If you have any ideas, feel free to play around with the code and implement them.
   
