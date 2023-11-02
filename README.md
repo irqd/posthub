@@ -4,7 +4,7 @@
 
 PostHub is a simple CRUD (Create, Read, Update, Delete) project built with Laravel and Livewire. The project is designed to allow users to create and manage posts, making it easy for users to share their thoughts and engage with others.
 
-c
+### Key Features
 
 - **Authentication:** PostHub provides a complete authentication system, including user registration, login, and password reset functionality.
 
