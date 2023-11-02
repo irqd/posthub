@@ -27,7 +27,7 @@ To set up the PostHub project, follow these steps:
 1. **Clone the Repository:** Start by cloning the project repository from GitHub using the following command:
 
    ```shell
-   git clone https://github.com/your-username/posthub.git
+   git clone https://github.com/irqd/posthub.git
 
 2. **Navigate to the Project Directory:** Change your working directory to the project folder:
 
