@@ -71,5 +71,5 @@ To set up the PostHub project, follow these steps:
 
 ## 4. Key Notes
 
-- The application core features are working as is, but there are still some features that need to be implemented. If you have any ideas, feel free to play around with the code and implement them.
+- The application core features are working as is, but there are still some features that need to be implemented. If you have any ideas, feel free to play around with the code and implement them. Maybe add some authorization to the application, or add some tests. The possibilities are endless.
   
